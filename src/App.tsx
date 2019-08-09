@@ -3,15 +3,16 @@ import ReactDOM from "react-dom";
 import "./App.css";
 import { string } from "prop-types";
 
+// setting interface for ITodo
 interface ITodo {
   text: string;
   complete: boolean;
 }
 
 const App: React.FC = () => {
-  //initialiazing State using Hooks
-  const [value, setValue] = useState<string>("");
-  const [todos, setTodos] = useState<ITodo[]>([]);
+  //initialiazing State using React Hooks
+  const [value, setValue] = useState<string>(""); // set initial value as "value" with empty String
+  const [todos, setTodos] = useState<ITodo[]>([]); // set initial value as "todos" using ITodo interface -> empty []
 
   type FormElem = React.FormEvent<HTMLFormElement>;
 
@@ -24,18 +25,18 @@ const App: React.FC = () => {
 
   const addTodo = (text: string):void => {
     const newTodos: ITodo[] = [...todos, { text, complete: false }];
-    setTodos(newTodos);
+    setTodos(newTodos); // adding the string from user to the []
   };
 
   const removeTodo = (index: number):void => {
     const newTodos: ITodo[] = [...todos];
-    newTodos.splice(index, 1);
+    newTodos.splice(index, 1); // removing the todo, that user is clicking on using index and splice method
     setTodos(newTodos);
   };
 
   const completeTodo = (index: number):void => {
     const newTodos: ITodo[] = [...todos];
-    newTodos[index].complete = !newTodos[index].complete;
+    newTodos[index].complete = !newTodos[index].complete; // revert the state
     setTodos(newTodos);
   };
 
